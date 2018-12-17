@@ -3,7 +3,7 @@ This is an example of some of the most important desing patterns used in softwar
 
 ## Factory Design Pattern  
 #### What is it used for?  
-The Factory is a creational pattern, which means that is used for creating/instantiating objects. There'll be may cases where you'll have some kind of superclass or interface and a lot of subclasses extending or implementing it. Commonly, each of those subclasses have their own constructors, and the way to instantiate them is calling that subclass' constructor directly. The idea of the Factory pattern is using a common Factory method to instantiate every single type of object whose class descend directly from another superclass/interface, instead of having isolated constructors. Let's see an example:  
+The Factory is a creational pattern, which means that is used for creating/instantiating objects. There'll be many cases where you'll have some kind of superclass or interface and a lot of subclasses extending or implementing it. Commonly, each of those subclasses have their own constructors, and the way to instantiate them is calling that subclass' constructor directly. The idea of the Factory pattern is using a common Factory method to instantiate every single type of object whose class descend directly from another superclass/interface, instead of having isolated constructors. Let's see an example:  
 
 Let's say that we are creating an application for a fruit store. Every single fruit regardless which fruit it is, can me sold. Okey so now, we can actually start thinking of a Fruit superclass, or even a Fruit Interface, both allowing us to define the common method sell() that all the fruits should have. Let's write that:  
 ```
@@ -43,7 +43,7 @@ if(color == "red"){
   System.err.println("No matching fruit.");
 }
 ```   
-Pretty messy, isn't it? Why would you have to check a conditions every time you'd like to instatiate an object? The answer is: You don't have to, because we know about Software Engineering so we could apply a Factory pattern! Lets see, instead of creating the objects in our code always checking for a contition manually, we could just create a class that does that for us! Note that mostly every time you see a Factory Pattern implemented, it will have is own class with 'Factory' in it's name. Let's get down to work, we are going to create a FruitFactory class, with a method getFruit() on it. Lets also make that method static, because there's not need of instantiating the Factory class (why would we?) and of course, that method needs a parameter: a criteria. Depeding on the value of that criteria, we will create a different object. Here is an example:  
+Pretty messy, isn't it? Why would you have to check a conditions every time you'd like to instantiate an object? The answer is: You don't have to, because we know about Software Engineering so we could apply a Factory pattern! Lets see, instead of creating the objects in our code always checking for a contition manually, we could just create a class that does that for us! Note that mostly every time you see a Factory Pattern implemented, it will have is own class with 'Factory' in it's name. Let's get down to work, we are going to create a FruitFactory class, with a method getFruit() on it. Lets also make that method static, because there's not need of instantiating the Factory class (why would we?) and of course, that method needs a parameter: a criteria. Depeding on the value of that criteria, we will create a different object. Here is an example:  
 ```
 public class FruitFactory {
   public static Fruit getFruit(String criteria) {
@@ -65,4 +65,4 @@ Easy as that! We can summarize what we've learned about the Factory pattern:
 - It's quicker than checking for a condition every time you want to create an object.  
 - You pass the responsability of choosing the object type to the Factory class.  
   
-  ## Next: Singleton Pattern! Coming soon...
+## Next: Singleton Pattern! Coming soon...
