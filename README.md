@@ -1,4 +1,4 @@
-# Desing Patterns made easy  
+# Design Patterns made easy  
 This is an example of some of the most important desing patterns used in software development, implemented in Java and with every explanaition needed to understand it's use.  
 
 ## Factory Design Pattern  
