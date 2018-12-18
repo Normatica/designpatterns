@@ -65,4 +65,33 @@ Easy as that! We can summarize what we've learned about the Factory pattern:
 - It's quicker than checking for a condition every time you want to create an object.  
 - You pass the responsability of choosing the object type to the Factory class.  
   
-## Next: Singleton Pattern! Coming soon...
+## Singleton Design Pattern  
+This is a pretty interesting one, it may look easy at first, but this pattern has to be used in a very restrictive situation. First of all and as his name describes, the Singleton Pattern tells that any class affected by it can only have one instance at the same time. It's own definition is as simple as that, you cannot have 2 or more objects instanciated of a particular class. Now, why is this pattern so complicated then? Because a software developer cannot use it 'freely', which means that the class candidate for applying a Singleton pattern, MUST satisfy a few conditions:  
+- First of all, and the most obvious one is that you can't instantiate an object in two different parts of an application at the same time. Every single time you instantiate an object, you'll get the first object ever created. Keep that in mind. (Although there might be several implementations).    
+- The Singleton class has Global Access, which means that it is in scope on any single line of code in your program.  
+Several authors have their own opinion on the Singleton Pattern, some of then say that it's deprecated, others like it, and... You'll actually find tons of opinions out there. My personal opinion is:  
+##### Try to avoid this pattern unless you're 100% sure of that individual instantiation. And even if you're 100% sure, take a look back, because 'Single' may have to turn into 'Multiple' in the future.  
+#### How do you use it?  
+Fair enough with all the philosophycal stuff, let's implement a Singleton with a Java example. You may have notice that when we are creating our classes in Java (or pretty much any other Object Oriented programming language), the constructor of that class will 'by default' be public. Many people don't actually think about this and just type it, but public constructor = anywhere instantiation. Here is when Singleton comes in hand. We'll make that class' constructor private, and then create a static method that will return the object itself, but hey, always checking if an instance has already been created.  
+Time to go for an example: We are building an HTTP Server in Java and we want a class to handle the configuration files to load them at the beginning of our application. Notice that the class will only be instatiated once (on start) and we just want an instance running on our program, enough for using the Singleton Pattern. Our class will look like this:  
+```
+public class ConfigurationLoader{
+  ConfigurationLoader instance = null;
+  
+  //Set constructor to private
+  private ConfigurationLoader() {}
+  
+  public static getInstance(){
+    if(this.instance == null) {
+      this.instance = new ConfigurationLoader();
+    }
+    return this.instance;
+  }
+}
+```  
+Now that we have our Singleton class implemented, we can create only an instance of that class in our program. Each time we would like to create a new object, the first one will be returned.  
+```
+ConfigurationLoader firstLoader = ConfigurationLoader.getInstance(); //First object ever created  
+ConfigurationLoader secondLoader = ConfigurationLoader.getInstance(); //secondLoader has the same instance as firstLoader
+```  
+And that's it! We've just implemented a singleton pattern.  
